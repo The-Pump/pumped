@@ -25,11 +25,11 @@ const WorkoutComponent = (props) => {
   return (
     <div className="card-background">
       <h2>{item.name}</h2>
-      <img  src="../images/Logo.png" style={
+      {/* <img  src="../images/Logo.png" style={
         { height: '18rem',
           borderRadius: '30px'
         }
-      } alt="logo"/>
+      } alt="logo"/> */}
       <div className="card-button">
       <Button variant="info" onClick={handleShow}>
           See More

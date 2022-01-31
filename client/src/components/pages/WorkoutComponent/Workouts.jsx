@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Container, Row, Col } from 'react-bootstrap';
 import WorkoutComponent from './WorkoutComponent.jsx';
 import axios from 'axios';
 
@@ -58,7 +58,14 @@ const Workouts = () => {
         </div>
       </div>
       <div>
-        {list.map(item => <WorkoutComponent item={item} />)}
+        <Container>
+          <Row>
+            <Col></Col>
+            <Col>{list.map(item => <WorkoutComponent item={item} />)}</Col>
+            <Col></Col>
+          </Row>
+        </Container>
+        
       </div>
     </div>
   )
