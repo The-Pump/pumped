@@ -12,7 +12,7 @@ const WorkoutComponent = (props) => {
    //use hooks for state management, take the props you need for workout name, description and an input are for intensity
 
   //create a context file to render the data  
-  const [plans, setPlan] = useState(['bursts', 'calisthenics', 'deadlifts'])
+  const [plans, setPlan] = useState(['Arms', 'Core is MORE', 'Legs', 'Shoulders', 'THIS IS SPARTA!'])
 
   const [show, setShow] = useState(false);
   
