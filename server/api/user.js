@@ -26,7 +26,7 @@ const signup = (req, res) => {
 // const signup = (req, res) => {
 //   User.create(req.body)
 //     .then((data) => {
-//       res.json(data).sendStatus(201);
+//       res.send(data);
 //     }).catch((err) => {
 //       console.warn(err);
 //       res.sendStatus(500);

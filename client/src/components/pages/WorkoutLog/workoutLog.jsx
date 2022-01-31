@@ -27,7 +27,14 @@ const WorkoutLog = () => {
     return axios.post('/api/router/addToUserLog', userAndLog)
       .then((newLog) => {
         //update userLogs on screen to show it was added
-        setUserLogs(userLogs => [...userLogs, newLog]);
+        console.log(newLog.data, 30);
+        newLog = newLog.data.map(log => {
+          let date = new Date(log.createdAt)
+          log.createdAt = date.toString().slice(0, 25);
+          return log;
+        })
+        setUserLogs(newLog);
+        // console.log(userLogArray, 32)
       })
       .catch((err) => {
         console.error("can't save log", err)
@@ -60,30 +67,22 @@ const WorkoutLog = () => {
         </Row>
       </Form>
       <div>
-      <Table striped bordered hover>
-  <thead>
-    <tr>
-      <th>My Logs</th>
-      <th>Created</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{newLog}</td>
-      {/* {userLogs.map(item => <td>{item}</td>)} */}
-      <td>{moment().format('MMMM Do YYYY, h:mm:ss a') || 'N/A'}</td>
-    </tr>
-  </tbody>
-</Table>
 <Col xs="auto">
             <Button type="submit" className="mb-2" variant="info" onClick={() => handleSubmit()}>
               Submit
             </Button>
           </Col>
-</div>
-      {/* <ul>
-        
-      </ul> */}
+      <Table striped bordered hover>
+  <thead>
+    <tr>
+      <th>My Logs</th>
+    </tr>
+  </thead>
+</Table>
+  </div>
+      <ul>
+        {userLogs.map(log => <div>{`${username}: ${log.text}`}<li>{log.createdAt}</li></div>)}
+      </ul>
     </div>
   )
 }
