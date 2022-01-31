@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Row, Col, Button, InputGroup, FormControl, Table} from 'react-bootstrap';
+import moment from 'moment';
 
 const WorkoutLog = () => {
 
@@ -21,7 +22,9 @@ const WorkoutLog = () => {
   //handle submit
   const handleSubmit = () => {
     //send post request with user id to users workout logs
-    axios.post(`/api/router/addToUserLog/:${username}`, newLog)
+    let text = newLog;
+    const userAndLog = { username, text}
+    return axios.post('/api/router/addToUserLog', userAndLog)
       .then((newLog) => {
         //update userLogs on screen to show it was added
         setUserLogs(userLogs => [...userLogs, newLog]);
@@ -54,16 +57,33 @@ const WorkoutLog = () => {
             <InputGroup.Text>LOG</InputGroup.Text>
             <FormControl id="inlineFormInputGroup" placeholder="Describe Your Experience" value={newLog} onChange={handleChange} />
           </InputGroup>
-          <Col xs="auto">
-            <Button type="submit" className="mb-2" onClick={() => handleSubmit()}>
+        </Row>
+      </Form>
+      <div>
+      <Table striped bordered hover>
+  <thead>
+    <tr>
+      <th>My Logs</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{newLog}</td>
+      {/* {userLogs.map(item => <td>{item}</td>)} */}
+      <td>{moment().format('MMMM Do YYYY, h:mm:ss a') || 'N/A'}</td>
+    </tr>
+  </tbody>
+</Table>
+<Col xs="auto">
+            <Button type="submit" className="mb-2" variant="info" onClick={() => handleSubmit()}>
               Submit
             </Button>
           </Col>
-        </Row>
-      </Form>
-      <ul>
-        {userLogs.map(item => <li>{item}</li>)}
-      </ul>
+</div>
+      {/* <ul>
+        
+      </ul> */}
     </div>
   )
 }

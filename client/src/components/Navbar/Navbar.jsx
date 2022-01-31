@@ -13,9 +13,9 @@ const AppNavbar = () => {
           <Nav.Link>
           <Link to="/home" style={{ textDecoration: 'none' }}>Home</Link>
           </Nav.Link>
-          <Nav.Link>
+          {/* <Nav.Link>
           <Link to="/profile" style={{ textDecoration: 'none' }}>Profile</Link>
-          </Nav.Link>
+          </Nav.Link> */}
           <NavDropdown title="Services" id="basic-nav-dropdown">
 
             <NavDropdown.Item href="#action/3.1">
@@ -41,12 +41,6 @@ const AppNavbar = () => {
                 <Link to="/workouts" style={{ textDecoration: 'none' }}>Workouts</Link>
               </Nav.Link>
             </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.5">
-            <Nav.Link>
-                <Link to="/create-workout" style={{ textDecoration: 'none' }}>Create Your Own Workout</Link>
-              </Nav.Link>
-              </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link>
           <Link to="/signin" style={{ textDecoration: 'none' }}>Signin</Link>
