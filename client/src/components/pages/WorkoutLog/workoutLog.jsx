@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Row, Col, Button, InputGroup, FormControl, Table} from 'react-bootstrap';
+import { Form, Row, Col, Button, InputGroup, FormControl, Table, Card} from 'react-bootstrap';
 import moment from 'moment';
 
 const WorkoutLog = () => {
@@ -27,7 +27,6 @@ const WorkoutLog = () => {
     return axios.post('/api/router/addToUserLog', userAndLog)
       .then((newLog) => {
         //update userLogs on screen to show it was added
-        console.log(newLog.data, 30);
         newLog = newLog.data.map(log => {
           let date = new Date(log.createdAt)
           log.createdAt = date.toString().slice(0, 25);
@@ -80,9 +79,19 @@ const WorkoutLog = () => {
   </thead>
 </Table>
   </div>
+  <Card>
+  <Card.Header>Log</Card.Header>
+  <Card.Body>
+    <blockquote className="blockquote mb-0">
       <ul>
-        {userLogs.map(log => <div>{`${username}: ${log.text}`}<li>{log.createdAt}</li></div>)}
+        {userLogs.map(log => <div style={{color: 'white'}}>{`${username}: ${log.text}`}<li>{log.createdAt}</li></div>)}
       </ul>
+      <footer className="blockquote-footer">
+        <cite title="Source Title">Get Pumped</cite>
+      </footer>
+    </blockquote>
+  </Card.Body>
+</Card>
     </div>
   )
 }
