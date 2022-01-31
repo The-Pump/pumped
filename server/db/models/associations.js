@@ -19,7 +19,9 @@ User.hasMany(UserLog);
 User.hasOne(Calendar);
 
 // A User log belongs to a User.
-UserLog.belongsTo(User);
+UserLog.belongsTo(User, {
+  foreignKey: 'UserId',
+});
 
 // A Calendar belongs to a User and has many workout plans.
 Calendar.belongsTo(User);

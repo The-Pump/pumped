@@ -9,7 +9,7 @@ const UserLog = db.define(
     // Model attributes are defined here.
     text: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
   },
   {

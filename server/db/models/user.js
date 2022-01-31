@@ -28,7 +28,7 @@ const User = db.define(
     },
   },
   {
-    // Other model options go here if needed.
+    timestamps: false,
   },
 );
 

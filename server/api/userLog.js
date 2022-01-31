@@ -7,16 +7,13 @@ const addToUserLog = (req, res) => User.findOrCreate({
   },
 }).then((data) => {
   const { _id } = data[0].dataValues;
-  return _id;
+  const newLog = {
+    text: req.body.text,
+    UserId: _id,
+  };
+  return UserLog.create(newLog);
 })
-  .then((_id) => {
-    const newLog = {
-      text: req.body.text,
-      UserId: _id,
-    };
-    return UserLog.create(newLog);
-  })
-  .then((data) => {
+  .then(() => UserLog.findAll()).then((data) => {
     res.status(201).send(data);
   })
   .catch((err) => {
