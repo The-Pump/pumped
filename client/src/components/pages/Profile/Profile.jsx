@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Button } from 'react-bootstrap';
 
 //when user clicks profile on home page they should be redirected to a profile page that has a card with their username, created workouts, and workout plans
-function Profile() {
+function Profile({ user, userLog }) {
   return (
     <div>
       <h2>User Profile</h2>
@@ -10,17 +10,13 @@ function Profile() {
   <thead>
     <tr>
       <th>Username</th>
-      <th>Created Workouts</th>
-      <th>Workout Plans</th>
       <th>My Logs</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Keith</td>
-      <td>Example</td>
-      <td>Punisher</td>
-      <td>today sucked</td>
+      <td>{user}</td>
+      <td>{userLog || 'N/A'}</td>
     </tr>
   </tbody>
 </Table>
